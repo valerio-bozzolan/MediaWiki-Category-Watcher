@@ -2,6 +2,8 @@
 
 Welcome in the MediaWiki Category Watcher! Another keep-it-simple-and-stupid watcher for your MediaWiki categories!
 
+This tool is useful to reiceive an email when a page is added to a category.
+
 ## Installation
 
 ```
