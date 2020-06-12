@@ -1,0 +1,9 @@
+Hey!
+
+Something was added inside your watched category:
+
+%1$s
+__________________________
+MediaWiki category watcher
+%2$s
+%3$s

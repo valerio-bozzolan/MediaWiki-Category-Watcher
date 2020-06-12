@@ -1,0 +1,5 @@
+# do not version the configuration
+/config.php
+
+# some people put the framework here
+/boz-mw
