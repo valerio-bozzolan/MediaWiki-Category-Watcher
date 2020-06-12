@@ -68,11 +68,7 @@ function send_email( $subj, $body, $rcpt ) {
 		'Content-Type' => 'text/plain;charset=UTF-8',
 		'Subject'      => $subj,
 		'To'           => implode( ',', $rcpt ),
-//                'From'         => sprintf(
-//                                   '%s <%s>',
-//                                    get_bloginfo( 'name' ),
-//                                    WP_NET_SMTP_FROM
-//                               ),
+                'From'         => "$origin <$from>",
 		'X-Mailer'     => 'Net/SMTP.php via MediaWiki Category Watcher',
 	];
 
