@@ -3,3 +3,6 @@
 
 # some people put the framework here
 /boz-mw
+
+# ignore cache contents
+/cache/*
