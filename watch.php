@@ -158,8 +158,8 @@ if( $unseen ) {
 		// prepare a cute page body
 		$title_object = $wiki->createTitleParsing( $title );
 		$title_url = $title_object->getURL();
-		$unseen_list[] = "* $title";
-		$unseen_list[] = "* $title_url";
+		$unseen_list[] = $title;
+		$unseen_list[] = $title_url;
 		$unseen_list[] = '';
 	}
 
