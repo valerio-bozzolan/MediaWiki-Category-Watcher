@@ -4,17 +4,25 @@ Welcome in the MediaWiki Category Watcher! Another keep-it-simple-and-stupid wat
 
 == Installation ==
 
-	git clone this_repository
-	git clone https://gitpull.it/source/boz-mw.git
+```
+git clone https://gitpull.it/source/mediawiki-category-watcher.git
+git clone https://gitpull.it/source/boz-mw.git
+```
 
+Then:
 
-Copy the `config-example.php` and save as `config.php`.
+```
+cd mediawiki-category-watcher
+cp config-example.php config.php
+```
 
-Fill your SMTP credentials.
+Now fill your SMTP credentials in the `config.php` file.
 
 == Usage ==
 
-	./watch.php --wiki=metawiki --category="Category:ItWikiCon 2020 - Proposals"
+```
+./watch.php --wiki=metawiki --strip-base --to=user@example.com,user2@example.com --category="Category:ItWikiCon 2020 - Proposals"
+```
 
 == Body ==
 
@@ -23,6 +31,7 @@ The `body.txt` file is just your email body, supporting this `sprintf` format:
 * `$1%s`: List of pages added inside the category.
 * `%2$s`: Watched category
 * `%3$s`: Watched category URL
+* `%4$s`: Your ORIGIN, set in the configuration
 
 == License ==
 
