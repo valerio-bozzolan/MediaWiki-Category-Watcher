@@ -25,6 +25,7 @@ $opts = getopt( '', [
 	'category:',
 	'wiki:',
 	'to:',
+	'strip-base',
 ] );
 
 // config file
@@ -38,6 +39,10 @@ $WIKI_UID    = $opts['wiki']     ?? null;
 
 // comma separated list of additional destination emails
 $TO_RAW_LIST = $opts['to']       ?? '';
+
+// eventually strip page title prefixes from the mail body
+// to just have 'Something Title' from 'Project:Pages/Page Collection/Something Title'
+$STRIP_BASE  = isset( $opts['strip-base'] );
 
 // no wiki no party
 if( !$WIKI_UID ) {
@@ -144,6 +149,13 @@ if( $unseen ) {
 	// build a markdown list of the unseen pages
 	$unseen_list = [];
 	foreach( $unseen as $title ) {
+
+		// eventually strip the title prefix
+		if( $STRIP_BASE ) {
+			$title = basename( $title );
+		}
+
+		// prepare a cute page body
 		$title_object = $wiki->createTitleParsing( $title );
 		$title_url = $title_object->getURL();
 		$unseen_list[] = "* $title";
