@@ -20,6 +20,9 @@ $CONFIGS = [
 	// the '%s' is your watched category (you may omit it)
 	'SUBJECT'     => "New Page in %s",
 
+	// origin of these emails
+	'ORIGIN'      => "MediaWiki Category Watcher",
+
 	// smtp credentials to send emails
 	'SMTP_HOST'   => 'ssl://smtp.example.com',
 	'SMTP_PORT'   => '465',

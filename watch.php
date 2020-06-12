@@ -164,7 +164,10 @@ if( $unseen ) {
 		$CATEGORY,
 
 		// %3$s
-		$category_object->getURL()
+		$category_object->getURL(),
+
+		// %4$s
+		$CONFIGS['ORIGIN']
 	);
 
 	// replace arguments in the mail subject

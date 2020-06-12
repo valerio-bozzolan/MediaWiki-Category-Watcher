@@ -4,6 +4,7 @@ Something was added inside your watched category:
 
 %1$s
 __________________________
-MediaWiki category watcher
+%4$s
+
 %2$s
 %3$s
