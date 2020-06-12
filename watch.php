@@ -24,7 +24,7 @@ $opts = getopt( '', [
 	'config:',
 	'category:',
 	'wiki:',
-	'strip-base',
+	'to:',
 ] );
 
 // config file
@@ -35,6 +35,9 @@ $CATEGORY    = $opts['category'] ?? null;
 
 // wiki identifier
 $WIKI_UID    = $opts['wiki']     ?? null;
+
+// comma separated list of additional destination emails
+$TO_RAW_LIST = $opts['to']       ?? '';
 
 // no wiki no party
 if( !$WIKI_UID ) {
@@ -58,6 +61,31 @@ $wiki = MediaWikis::findFromUID( $WIKI_UID );
 if( !$wiki ) {
 	echo "Missing wiki with identifier $WIKI_UID\n";
 	exit( 1 );
+}
+
+// merge the base email addresses with the specified ones (if any)
+$TO = $CONFIGS['BASE_RECIPIENTS'] ?? [];
+if( $TO_RAW_LIST ) {
+	$to_additionals = explode( ',', $TO_RAW_LIST );
+	foreach( $to_additionals as $to_additional ) {
+		$TO[] = $to_additional;
+	}
+}
+
+// avoid duplicates added by mistake
+array_unique( $TO );
+
+// validate each email address
+foreach( $TO as $to ) {
+	if( !filter_var( $to, FILTER_VALIDATE_EMAIL ) ) {
+		echo "The email address '$to' is considered not valid\n";
+		exit( 2 );
+	}
+}
+
+// no addresses no party
+if( !$TO ) {
+	echo "Please specify at least one --to=email@example.com\n";
 }
 
 // parse the category title
@@ -146,7 +174,7 @@ if( $unseen ) {
 	);
 
 	// send the email to the recipients
-	send_email( $subject, $body, $CONFIGS['RECIPIENTS'] );
+	send_email( $subject, $body, $TO );
 
 }
 

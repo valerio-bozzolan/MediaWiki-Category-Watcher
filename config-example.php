@@ -16,11 +16,6 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 $CONFIGS = [
-	// recipients of your emails
-	'RECIPIENTS'  => [
-		'boz@reyboz.it',
-	],
-
 	// subject of the email
 	// the '%s' is your watched category (you may omit it)
 	'SUBJECT'     => "New Page in %s",
@@ -38,6 +33,12 @@ $CONFIGS = [
 
 	// directory used to cache stuff (please with trailing slash)
 	'DIR_CACHE'   => __DIR__ . '/cache',
+
+	// base recipients of your emails
+	// note that you can also set '--to=receiver@host.com,receiver2@host.com' from command line
+	'BASE_RECIPIENTS'  => [
+		// 'asd@receiver.it',
+	],
 ];
 
 // Load the 'boz-mw' framework
