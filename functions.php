@@ -34,6 +34,7 @@ function send_email( $subj, $body, $rcpt ) {
 	$uid     = $CONFIGS['SMTP_UID'];
 	$pwd     = $CONFIGS['SMTP_PWD'];
 	$method  = $CONFIGS['SMTP_METHOD'];
+	$origin  = $CONFIGS['ORIGIN'];
 
 	/* Create a new Net_SMTP object. */
 	if (! ($smtp = new Net_SMTP( $host, $port ) ) ) {
@@ -66,7 +67,7 @@ function send_email( $subj, $body, $rcpt ) {
 		'MIME-Version' => '1.0',
 		'Content-Type' => 'text/plain;charset=UTF-8',
 		'Subject'      => $subj,
-//              'To'           => implode( ',', $to ),
+		'To'           => implode( ',', $rcpt ),
 //                'From'         => sprintf(
 //                                   '%s <%s>',
 //                                    get_bloginfo( 'name' ),
