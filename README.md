@@ -1,8 +1,8 @@
-= MediaWiki Category Watcher ==
+# MediaWiki Category Watcher
 
 Welcome in the MediaWiki Category Watcher! Another keep-it-simple-and-stupid watcher for your MediaWiki categories!
 
-== Installation ==
+## Installation
 
 ```
 git clone https://gitpull.it/source/mediawiki-category-watcher.git
@@ -18,13 +18,13 @@ cp config-example.php config.php
 
 Now fill your SMTP credentials in the `config.php` file.
 
-== Usage ==
+## Usage
 
 ```
 ./watch.php --wiki=metawiki --strip-base --to=user@example.com,user2@example.com --category="Category:ItWikiCon 2020 - Proposals"
 ```
 
-== Body ==
+## Customize Email Body
 
 The `body.txt` file is just your email body, supporting this `sprintf` format:
 
@@ -33,7 +33,7 @@ The `body.txt` file is just your email body, supporting this `sprintf` format:
 * `%3$s`: Watched category URL
 * `%4$s`: Your ORIGIN, set in the configuration
 
-== License ==
+## License
 
 Copyright (c) 2020 Valerio Bozzolan
 
