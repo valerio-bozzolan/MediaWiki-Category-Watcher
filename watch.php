@@ -150,15 +150,18 @@ if( $unseen ) {
 	$unseen_list = [];
 	foreach( $unseen as $title ) {
 
-		// eventually strip the title prefix
-		if( $STRIP_BASE ) {
-			$title = basename( $title );
-		}
+		// create a title object
+		$title_object = $wiki->createTitleParsing( $title );
+
+		// eventually make the title shorter
+		$displayed_title =
+			$STRIP_BASE
+				? $title_object->getSubPageName()
+				: $title_object->getCompleteTitle();
 
 		// prepare a cute page body
-		$title_object = $wiki->createTitleParsing( $title );
 		$title_url = $title_object->getURL();
-		$unseen_list[] = $title;
+		$unseen_list[] = $displayed_title;
 		$unseen_list[] = $title_url;
 		$unseen_list[] = '';
 	}
