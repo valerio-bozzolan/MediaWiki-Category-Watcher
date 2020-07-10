@@ -114,31 +114,46 @@ $queries =
 		'cmtitle' => $CATEGORY,
 	] );
 
-// for each API continuation
-foreach( $queries as $query ) {
+try {
 
-	$members = $query->query->categorymembers ?? null;
-	foreach( $members as $member ) {
+	// for each API continuation
+	foreach( $queries as $query ) {
 
-		// well
-		$pageid = $member->pageid;
-		$title  = $member->title;
+		$members = $query->query->categorymembers ?? null;
+		foreach( $members as $member ) {
 
-		// first time? save
-		if( !isset( $cache[ $pageid ] ) ) {
+			// well
+			$pageid = $member->pageid;
+			$title  = $member->title;
 
-			// this is a new page!
-			$unseen[] = $title;
+			// first time? save
+			if( !isset( $cache[ $pageid ] ) ) {
 
-			// let's remember it
-			$cache[ $pageid ] = [
-				'title' => $title,
-			];
+				// this is a new page!
+				$unseen[] = $title;
+
+				// let's remember it
+				$cache[ $pageid ] = [
+					'title' => $title,
+				];
+			}
+
+			// save the last seen date
+			$cache[ $pageid ][ 'lastseen' ] = time();
 		}
-
-		// save the last seen date
-		$cache[ $pageid ][ 'lastseen' ] = time();
 	}
+
+
+} catch( Exception $e ) {
+
+	// WTF
+	printf( "%s: %s\n",
+		get_class( $e ),
+		$e->getMessage()
+	);
+
+	// let's die
+	exit( 4 );
 }
 
 if( $unseen ) {
