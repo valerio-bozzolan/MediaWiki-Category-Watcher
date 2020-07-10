@@ -6,6 +6,11 @@ This tool is useful to reiceive an email when a page is added to a category.
 
 ## Installation
 
+
+```
+sudo apt install php-net-smtp
+```
+
 ```
 git clone https://gitpull.it/source/mediawiki-category-watcher.git
 git clone https://gitpull.it/source/boz-mw.git
