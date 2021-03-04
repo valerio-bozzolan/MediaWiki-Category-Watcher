@@ -1,7 +1,7 @@
 #!/usr/bin/php
 <?php
 # MediaWiki Category Watcher
-# Copyright (C) 2020 Valerio Bozzolan
+# Copyright (C) 2020, 2021 Valerio Bozzolan
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -24,6 +24,7 @@ $opts = getopt( '', [
 	'config:',
 	'category:',
 	'wiki:',
+	'origin:',
 	'to:',
 	'strip-base',
 ] );
@@ -58,6 +59,16 @@ if( !$CATEGORY ) {
 
 // read the configuration
 require $CONFIG_FILE;
+
+if( empty( $CONFIGS ) ) {
+	echo "Empty config file.\n";
+	exit( 1 );
+}
+
+// allow to customize the origin
+if( !empty( $opts['origin'] ) ) {
+	$CONFIGS['ORIGIN'] = $opts['origin'];
+}
 
 use web\MediaWikis;
 
